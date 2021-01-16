@@ -65,7 +65,9 @@ func worker(wg *sync.WaitGroup, result chan URLNotify, page URLPattern) {
 		log.Fatal(err)
 	}
 	fmt.Println(page.url + ":" + strconv.FormatBool(matched))
-	result <- URLNotify{url: page.url, notify: matched}
+	if matched && page.found {
+		result <- URLNotify{url: page.url, notify: matched}
+	}
 }
 
 func submitMail(m *gomail.Message) (err error) {
