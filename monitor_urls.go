@@ -112,12 +112,12 @@ func main() {
 	var wg sync.WaitGroup
 
 	for i := 0; i < len(pages); i++ {
-		fmt.Println("Main: Starting worker", i)
+		// fmt.Println("Main: Starting worker", i)
 		wg.Add(1)
 		go worker(&wg, results, pages[i])
 	}
 
-	fmt.Println("Main: Waiting for workers to finish")
+	//fmt.Println("Main: Waiting for workers to finish")
 	go func() {
 		wg.Wait()
 		close(results)
