@@ -64,7 +64,7 @@ func worker(wg *sync.WaitGroup, result chan URLNotify, page URLPattern) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(page.url + ":" + strconv.FormatBool(matched))
+	fmt.Println(page.url + ":" + strconv.FormatBool(matched && page.found))
 	if matched && page.found {
 		result <- URLNotify{url: page.url, notify: matched}
 	}
